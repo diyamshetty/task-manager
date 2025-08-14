@@ -5,7 +5,7 @@ from datetime import datetime
 conn = sqlite3.connect("tasks.db")
 cursor = conn.cursor()
 
-# --- Create Tables ---
+# Create Tables
 # Users table
 cursor.execute('''
 CREATE TABLE IF NOT EXISTS users (
@@ -30,14 +30,14 @@ CREATE TABLE IF NOT EXISTS tasks (
 )
 ''')
 
-# --- User Management ---
+# User Management 
 def add_user():
     """Insert a new user into the users table"""
     name = input("Enter user name: ")
     email = input("Enter user email: ")
     cursor.execute("INSERT INTO users (name, email) VALUES (?, ?)", (name, email))
     conn.commit()
-    print("✅ User added successfully!")
+    print(" User added successfully!")
 
 def view_users():
     """Display all users"""
@@ -45,7 +45,7 @@ def view_users():
     for row in cursor.fetchall():
         print(row)
 
-# --- Task Management ---
+#Task Management 
 def add_task():
     """Insert a new task assigned to a user"""
     title = input("Enter task title: ")
@@ -89,7 +89,7 @@ def delete_task():
     conn.commit()
     print("🗑️ Task deleted!")
 
-# --- Reports ---
+# Reports 
 def report_tasks_by_user():
     """Count of tasks assigned to each user"""
     cursor.execute("""
@@ -124,7 +124,7 @@ def report_overdue_tasks():
     for row in cursor.fetchall():
         print(row)
 
-# --- Menu Loop ---
+# Menu Loop
 while True:
     print("\n--- Task Tracking System ---")
     print("1. Add User")
